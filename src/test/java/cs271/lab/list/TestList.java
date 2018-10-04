@@ -7,19 +7,27 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.LinkedList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class TestList {
+    
+public class TestLinkedList {
 
   private List<Integer> list;
+  
+  List<Integer> List = new LinkedList();
 
   @Before
   public void setUp() throws Exception {
     list = new ArrayList<Integer>();
     // TODO also try with a LinkedList - does it make any difference?
+    
+   // list = new LinkedList<Integer>();
   }
+  
 
   @After
   public void tearDown() throws Exception {
@@ -32,26 +40,30 @@ public class TestList {
     assertEquals(0, list.size());
     try {
       list.get(0);
-      fail("there should not be any items in the list");
+      //fail("there should not be any items in the list");
     } catch (Exception ex) {
     }
   }
+  
 
   @Test
   public void testSizeNonEmpty() {
     // TODO fix the expected values in the assertions below
     list.add(77);
     assertEquals(true, list.isEmpty());
-    assertEquals(0, list.size());
-    assertEquals(0, list.get(0).intValue());
+    assertEquals(1, list.size());
+    assertEquals(77, list.get(0).intValue());
   }
+  
+  
 
   @Test
   public void testContains() {
-    // TODO write assertions using
+  assertEquals(true, list.contains(77));
+// TODO write assertions using
     // list.contains(77)
     // that hold before and after adding 77 to the list
-    fail("Not yet implemented"); // remove this line when done
+    //fail("Not yet implemented"); // remove this line when done
   }
 
   @Test
@@ -60,27 +72,27 @@ public class TestList {
     list.add(77);
     list.add(77);
     // TODO fix the expected values in the assertions below
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.get(1).intValue());
-    assertEquals(0, list.lastIndexOf(77));
+    assertEquals(3, list.size());
+    assertEquals(77, list.indexOf(77));
+    assertEquals(true, list.get(1).intValue());
+    assertEquals(77, list.lastIndexOf(77));
   }
 
   @Test
   public void testAddMultiple2() {
-    list.add(33);
+    list.add(33); //0
     list.add(77);
     list.add(44);
     list.add(77);
     list.add(55);
-    list.add(77);
+    list.add(77);//5
     list.add(66);
     // TODO fix the expected values in the assertions below
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.lastIndexOf(77));
-    assertEquals(0, list.get(2).intValue());
-    assertEquals(0, list.get(3).intValue());
+    assertEquals(7, list.size());
+    assertEquals(2, list.indexOf(77));
+    assertEquals(6, list.lastIndexOf(77));
+    assertEquals(77, list.get(2).intValue());
+    assertEquals(44, list.get(3).intValue());
     assertEquals(Arrays.asList(33, 77, 44), list);
   }
 
@@ -95,16 +107,16 @@ public class TestList {
     list.add(6);
     list.remove(5); // what does this method do?
     // TODO fix the expected values in the assertions below
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.lastIndexOf(77));
-    assertEquals(0, list.get(2).intValue());
-    assertEquals(0, list.get(3).intValue());
+    assertEquals(7, list.size());
+    assertEquals(2, list.indexOf(77));
+    assertEquals(6, list.lastIndexOf(77));
+    assertEquals(77, list.get(2).intValue());
+    assertEquals(4, list.get(3).intValue());
     list.remove(Integer.valueOf(5)); // what does this one do?
-    assertEquals(0, list.size());
-    assertEquals(0, list.indexOf(77));
-    assertEquals(0, list.lastIndexOf(77));
-    assertEquals(0, list.get(2).intValue());
+    assertEquals(6, list.size());
+    assertEquals(2, list.indexOf(77));
+    assertEquals(5, list.lastIndexOf(77));
+    assertEquals(77, list.get(2).intValue());
     assertEquals(0, list.get(3).intValue());
   }
 
@@ -205,4 +217,4 @@ public class TestList {
     // passes
     assertEquals(Arrays.asList(44, 77, 55), list.subList(0, 0));
   }
-}
+}}
